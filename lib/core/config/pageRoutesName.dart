@@ -1,3 +1,3 @@
-class PageRouteName {
+class PageRoutesName {
   static const String initial = '/';
 }
