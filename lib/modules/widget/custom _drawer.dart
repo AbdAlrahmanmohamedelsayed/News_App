@@ -19,7 +19,7 @@ class CustomDrawer extends StatelessWidget {
               width: mediaQuery.size.width,
               height: mediaQuery.size.height * .2,
               child: Text(
-                'News App !',
+                'News App 📰',
                 style: theme.textTheme.bodyLarge,
               ),
             ),

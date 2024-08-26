@@ -15,7 +15,7 @@ class NewsApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ApplecationsThemeManager.lighttheme,
       title: 'News App',
-      initialRoute: PageRoutesName.initial,
+      initialRoute: PageRoutesName.homepage,
       onGenerateRoute: AppRouter.onGenerator,
     );
   }
