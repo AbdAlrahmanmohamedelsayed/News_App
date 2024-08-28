@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/model/category_data.dart';
 import 'package:news_app/modules/widget/custom%20_drawer.dart';
 import 'package:news_app/modules/widget/item_data.dart';
+import 'package:news_app/modules/widget/selected_categoryview.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -53,40 +54,74 @@ class _HomeViewState extends State<HomeView> {
           color: Colors.white),
       child: Scaffold(
         appBar: AppBar(
-            title: const Text(
-          'News App',
-        )),
-        drawer: const CustomDrawer(),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Pick your category \nof interest',
-                style: theme.textTheme.bodyLarge
-                    ?.copyWith(color: const Color(0xff4F5A69)),
-              ),
-              Expanded(
-                child: GridView.builder(
-                  padding: const EdgeInsets.all(10),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 20.0,
-                    mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.0,
-                  ),
-                  itemBuilder: (context, index) => ItemData(
-                    Categoryitem: categoryDataList[index],
-                    index: index,
-                  ),
-                  itemCount: categoryDataList.length,
+            actions: [
+              selectedCategoryData != null
+                  ? IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.search,
+                        size: 33,
+                      ))
+                  : SizedBox()
+            ],
+            title: Text(
+              selectedCategoryData == null
+                  ? 'News App'
+                  : selectedCategoryData!.categoryName,
+            )),
+        drawer: CustomDrawer(
+          onCategoryClicked: categoryDrawerClick,
+        ),
+        body: selectedCategoryData == null
+            ? Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Pick your category \nof interest',
+                      style: theme.textTheme.bodyLarge
+                          ?.copyWith(color: const Color(0xff4F5A69)),
+                    ),
+                    Expanded(
+                      child: GridView.builder(
+                        padding: const EdgeInsets.all(10),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 20.0,
+                          mainAxisSpacing: 20.0,
+                          childAspectRatio: 1.0,
+                        ),
+                        itemBuilder: (context, index) => ItemData(
+                          onCategoryClicked: categoryDataClick,
+                          categoryitem: categoryDataList[index],
+                          index: index,
+                        ),
+                        itemCount: categoryDataList.length,
+                      ),
+                    )
+                  ],
                 ),
               )
-            ],
-          ),
-        ),
+            : SelectedCategoryView(
+                categorydata: selectedCategoryData!,
+              ),
       ),
     );
+  }
+
+  CategoryData? selectedCategoryData;
+  void categoryDataClick(CategoryData data) {
+    setState(() {
+      selectedCategoryData = data;
+    });
+  }
+
+  void categoryDrawerClick() {
+    setState(() {
+      selectedCategoryData = null;
+    });
+    Navigator.pop(context);
   }
 }

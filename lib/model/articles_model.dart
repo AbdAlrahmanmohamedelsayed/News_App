@@ -15,6 +15,7 @@ class ArticlesModel {
 }
 
 class Article {
+  final String id;
   final String title;
   final String author;
   final String description;
@@ -22,6 +23,7 @@ class Article {
   final String urlToImage;
   final String publishedAt;
   Article({
+    required this.id,
     required this.author,
     required this.title,
     required this.description,
@@ -31,7 +33,8 @@ class Article {
   });
   factory Article.fromjson(Map<String, dynamic> json) {
     return Article(
-        author: json['source']['name'],
+        id: json['source']['id'],
+        author: json['name'],
         title: json['title'],
         description: json['description'],
         url: json['url'],

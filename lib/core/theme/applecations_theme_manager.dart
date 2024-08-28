@@ -33,7 +33,7 @@ class ApplecationsThemeManager {
           fontFamily: 'Exo'),
       bodySmall: TextStyle(
           color: Colors.white,
-          fontSize: 22,
+          fontSize: 17,
           fontWeight: FontWeight.w400,
           fontFamily: 'Exo'),
     ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/theme/colors_palettes.dart';
+import 'package:news_app/model/category_data.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  final void Function() onCategoryClicked;
+  const CustomDrawer({super.key, required this.onCategoryClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,9 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                onCategoryClicked();
+              },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
