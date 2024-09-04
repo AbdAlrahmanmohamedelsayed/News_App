@@ -45,36 +45,34 @@ class _CategoryViewState extends State<CategoryView> {
                       ),
                     )
                     .toList())),
-        Container(
-          child: FutureBuilder<List<Article>>(
-            future: ApiManager.fetchArticleList(
-                widget.sourcesList[selectedIndexTab].id),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasError) {
-                return const Text('Error Fetch');
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: ColorsPalettes.primaryColor,
-                  ),
-                );
-              }
-
-              final List<Article> ArticlesList = snapshot.data ?? [];
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: ArticlesList.length,
-                  itemBuilder: (context, index) {
-                    Article article = ArticlesList[index];
-                    return ItemArticleView(
-                      article: article,
-                    );
-                  },
+        FutureBuilder<List<Article>>(
+          future: ApiManager.fetchArticleList(
+              widget.sourcesList[selectedIndexTab].id),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            print(widget.sourcesList[selectedIndexTab].id);
+            if (snapshot.hasError) {
+              return const Text('Error Fetch');
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: ColorsPalettes.primaryColor,
                 ),
               );
-            },
-          ),
+            }
+            final List<Article> articlesList = snapshot.data ?? [];
+            return Expanded(
+              child: ListView.builder(
+                itemCount: articlesList.length,
+                itemBuilder: (context, index) {
+                  Article article = articlesList[index];
+                  return ItemArticleView(
+                    article: article,
+                  );
+                },
+              ),
+            );
+          },
         ),
       ],
     );

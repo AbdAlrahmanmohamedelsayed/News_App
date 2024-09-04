@@ -31,7 +31,7 @@ class ApiManager {
       'v2/top-headlines',
       {
         'apiKey': Constants.apiKey,
-        'category': sourceId,
+        'sources': sourceId,
       },
     );
     final response = await http.get(url);
@@ -41,7 +41,7 @@ class ApiManager {
       ArticlesModel article = ArticlesModel.fromjson(data);
       return article.articles;
     } else {
-      throw Exception('Filed  get Sources');
+      throw Exception('Filed  get article');
     }
   }
 }

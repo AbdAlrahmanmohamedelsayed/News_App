@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/articles_model.dart';
 
+// ignore: must_be_immutable
 class ItemArticleView extends StatelessWidget {
   Article article;
   ItemArticleView({super.key, required this.article});
@@ -16,12 +17,17 @@ class ItemArticleView extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          Image.network(article.urlToImage),
+          article.urlToImage.isEmpty
+              ? Image.asset('assets/images/notfound.jpeg')
+              : Image.network(
+                  article.urlToImage,
+                  fit: BoxFit.fitHeight,
+                ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                article.author,
+                article.name,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: const Color(0xff79828B),
                 ),

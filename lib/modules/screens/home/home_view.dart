@@ -19,9 +19,9 @@ class _HomeViewState extends State<HomeView> {
         categoryImage: 'assets/images/ball.png',
         categorybackgroundColor: const Color(0xffC91C22)),
     CategoryData(
-        categoryId: 'politics',
-        categoryName: 'Politics',
-        categoryImage: 'assets/images/Politics.png',
+        categoryId: 'technology',
+        categoryName: 'Technology',
+        categoryImage: 'assets/images/tecnology.png',
         categorybackgroundColor: const Color(0xff003E90)),
     CategoryData(
         categoryId: 'health',
@@ -34,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
         categoryImage: 'assets/images/bussines.png',
         categorybackgroundColor: const Color(0xffCF7E48)),
     CategoryData(
-        categoryId: 'enviroment',
+        categoryId: 'entertainment',
         categoryName: 'Enviroment',
         categoryImage: 'assets/images/environment.png',
         categorybackgroundColor: const Color(0xff4882CF)),
