@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/theme/colors_palettes.dart';
-import 'package:news_app/model/category_data.dart';
 
 class CustomDrawer extends StatelessWidget {
   final void Function() onCategoryClicked;

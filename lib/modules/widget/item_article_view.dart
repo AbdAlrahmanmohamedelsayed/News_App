@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/model/articles_model.dart';
+import 'package:news_app/data/model/articles_model.dart';
 
 // ignore: must_be_immutable
 class ItemArticleView extends StatelessWidget {
